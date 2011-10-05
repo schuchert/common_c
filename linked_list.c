@@ -91,8 +91,7 @@ int linked_list_has_next(list_iterator *iter) {
 
 void *linked_list_next(list_iterator *iter) {
 	iter->current = iter->current->next;
-	void *value = iter->current->data;
-	return value;
+	return list_node_data(iter->current);
 }
 
 void linked_list_end(list_iterator *iter) {
