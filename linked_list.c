@@ -56,6 +56,21 @@ void linked_list_release_destroy(linked_list *aList, RELEASE_F f) {
 	}
 }
 
+void* linked_list_find(linked_list *list, COMP_F f, const void *other) {
+	list_iterator *iter = linked_list_begin(list);
+
+	while (linked_list_has_next(iter)) {
+		void *current = linked_list_next(iter);
+		if (f(current, other)) {
+			linked_list_end(iter);
+			return current;
+		}
+	}
+
+	linked_list_end(iter);
+	return NULL;
+}
+
 size_t linked_list_size(linked_list *list) {
 	size_t size = 0;
 	list_node *current = list->head;

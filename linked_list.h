@@ -12,6 +12,7 @@ typedef struct linked_list linked_list;
 typedef struct list_node list_node;
 typedef struct list_iterator list_iterator;
 typedef void (*RELEASE_F)(void *);
+typedef int (*COMP_F)(const void *current, const void *other);
 
 linked_list *linked_list_create(void);
 void linked_list_destroy(linked_list *aList);
@@ -20,6 +21,7 @@ size_t linked_list_size(linked_list *list);
 void linked_list_add(linked_list *list, void *value);
 list_node *linked_list_last(linked_list *list);
 
+void* linked_list_find(linked_list *list, COMP_F f, const void *other);
 list_iterator *linked_list_begin(linked_list *list);
 void linked_list_end(list_iterator *iter);
 int linked_list_has_next(list_iterator *iter);
